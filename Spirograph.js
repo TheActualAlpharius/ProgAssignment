@@ -5,12 +5,13 @@ class Spirograph {
 		this.rho = rho;
 		this.y;
 		this.x;
+		this.updateloopc();
 	}
 	
 	draw(){
 		noFill()
 		beginShape();
-		for (var t = 0; t <=(16*PI); t += PI/40) {//draws the spirograph
+		for (var t = 0; t <=(2*PI*this.loopc); t += PI/40) {//draws the spirograph
 			//calculates the coordinates of the spiral at t
 			this.x = factor*((this.R-this.r) * cos(t) + this.rho * cos(((this.R-this.r)/this.r)*t));
 			this.y = factor*((this.R-this.r) * sin(t) - this.rho * sin(((this.R-this.r)/this.r)*t));
@@ -27,6 +28,37 @@ class Spirograph {
 		}
 		endShape();
 	}
+		
+	updateloopc(){
+		this.loopc = lcm(this.R, this.r);
+		this.loopc = Math.ceil(this.loopc);
+		print(this.loopc);
+	}
 	
+	setr(r){
+		this.r = r;
+		this.updateloopc();
+	}
+	
+	set(R){
+		this.R = R;
+		this.updateloopc();
+	}
+	
+
+	
+}
+
+
+
+function lcm(a, b){
+	return (a/gcd(a,b)) * b
+}
+
+function gcd(a, b){
+	if (b == 0){
+		return a;
+	}
+	return gcd(b, a % b);
 	
 }
