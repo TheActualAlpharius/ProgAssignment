@@ -30,8 +30,12 @@ class Spirograph {
 	}
 		
 	updateloopc(){
+		if (Number.isInteger(this.R) && Number.isInteger(this.r)) {
 		this.loopc = lcm(this.R, this.r);
-		this.loopc = Math.ceil(this.loopc);
+		}
+		else {
+			this.loopc = this.r * this.R;
+		}
 		print(this.loopc);
 	}
 	
