@@ -5,11 +5,19 @@ class Spirograph {
 		this.rho = rho;
 		this.y;
 		this.x;
+		this.colourR = 255;
+		this.colourG = 0;
+		this.colourB = 0;
+		this.weight = 4;
 		this.updateloopc();
 	}
 	
 	draw(){
-		noFill()
+		//Sets up brush
+		colorMode(RGB, 255);
+		noFill();
+		strokeWeight(this.weight);
+		stroke(this.colourR, this.colourG, this.colourB);
 		beginShape();
 		for (var t = 0; t <=(2*PI*this.loopc); t += PI/40) {//draws the spirograph
 			//calculates the coordinates of the spiral at t
@@ -20,9 +28,6 @@ class Spirograph {
 			var y1;
 			x1 = map(this.x, -10,10,0,width);
 			y1 = map(this.y, -10,10,0,height);
-			//sets up brush
-			stroke(77, 219, 255);
-			strokeWeight(2);
 			//draws a line from last coord to next coord
 			vertex(x1,y1);
 		}
@@ -39,6 +44,10 @@ class Spirograph {
 		print(this.loopc);
 	}
 	
+	setWeight(weight){
+		this.weight = weight;
+	}
+	
 	setr(r){
 		this.r = r;
 		this.updateloopc();
@@ -49,8 +58,12 @@ class Spirograph {
 		this.updateloopc();
 	}
 	
+	setRGB(r, g, b){
+		this.colourR = r;
+		this.colourG = g;
+		this.colourB = b;
+	}
 
-	
 }
 
 
