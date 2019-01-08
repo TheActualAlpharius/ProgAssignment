@@ -9,53 +9,77 @@ class Spirograph {
 		this.colourG = 0;
 		this.colourB = 0;
 		this.weight = 4;
+		this.scale = Math.abs(this.R - this.r) + Math.abs(this.rho)+2;
+		this.loopc;
 		this.updateloopc();
+		
 	}
 	
-	draw(){
+	
+	draw(g){
 		//Sets up brush
-		colorMode(RGB, 255);
-		noFill();
-		strokeWeight(this.weight);
-		stroke(this.colourR, this.colourG, this.colourB);
-		beginShape();
+		
+		if(g != null){
+			g.colorMode(RGB, 255);
+			g.noFill();
+			g.strokeWeight(this.weight);
+			g.stroke(this.colourR, this.colourG, this.colourB);
+			g.beginShape();
+		}else{
+			colorMode(RGB, 255);
+			noFill();
+			strokeWeight(this.weight);
+			stroke(this.colourR, this.colourG, this.colourB);
+			beginShape();
+		}
 		for (var t = 0; t <=(2*PI*this.loopc); t += PI/40) {//draws the spirograph
 			//calculates the coordinates of the spiral at t
-			this.x = factor*((this.R-this.r) * cos(t) + this.rho * cos(((this.R-this.r)/this.r)*t));
-			this.y = factor*((this.R-this.r) * sin(t) - this.rho * sin(((this.R-this.r)/this.r)*t));
+			this.x = ((this.R-this.r) * cos(t) + this.rho * cos(((this.R-this.r)/this.r)*t));
+			this.y = ((this.R-this.r) * sin(t) - this.rho * sin(((this.R-this.r)/this.r)*t));
 			//converts from the graph coords to the screen coords
 			var x1;
 			var y1;
-			x1 = map(this.x, -10,10,0,width);
-			y1 = map(this.y, -10,10,0,height);
+			x1 = map(this.x, -this.scale, this.scale,0,width);
+			y1 = map(this.y, -this.scale, this.scale,0,height);
+
 			//draws a line from last coord to next coord
-			vertex(x1,y1);
+			if(g != null){
+				g.vertex(x1,y1)
+			}else{
+				vertex(x1,y1);
+			}
 		}
-		endShape();
+		if(g != null){
+			g.endShape
+		}else{
+			endShape();
+		}
 	}
 		
-	updateloopc(){
+
+	updateloopc() {
 		if (Number.isInteger(this.R) && Number.isInteger(this.r)) {
 		this.loopc = lcm(this.R, this.r);
 		}
 		else {
 			this.loopc = this.r * this.R;
 		}
-		print(this.loopc);
-	}
-	
-	setWeight(weight){
-		this.weight = weight;
 	}
 	
 	setr(r){
 		this.r = r;
+		this.scale = Math.abs(this.R - this.r) + Math.abs(this.rho)+2;
+		
 		this.updateloopc();
+		print(this.scale);
 	}
 	
-	set(R){
+	setR(R){
 		this.R = R;
+		this.scale = Math.abs(this.R - this.r) + Math.abs(this.rho)+2;
+		
 		this.updateloopc();
+		print(this.scale);
 	}
 	
 	setRGB(r, g, b){
