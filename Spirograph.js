@@ -18,7 +18,6 @@ class Spirograph {
 	
 	draw(g){
 		//Sets up brush
-		
 		if(g != null){
 			g.colorMode(RGB, 255);
 			g.noFill();
