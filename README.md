@@ -26,4 +26,7 @@ setRBG(r, g, b)|Sets the brush colour based on RGB values ranging from 0-255|nul
 The image produced below is the result of the draw() method. The form changed the realavent paramaters. If left blank there will be no change for that variable.
 
 #Source
-Built using code by CarlosPonce found in Spirograph under the Creative Commons Attribution ShareAlike 
+Built using code by CarlosPonce found in Spirograph under the [Creative Commons Attribution ShareAlike] (https://creativecommons.org/licenses/by-sa/3.0) found at <https://www.openprocessing.org/sketch/445578>. Changes have been made to the original files.
+
+#Licence
+This program is licenced under the [Creative Commons Attribution ShareAlike] (https://creativecommons.org/licenses/by-sa/3.0)
