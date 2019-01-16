@@ -5,8 +5,8 @@ var r = 3;//radius of 'small circle'
 var rho = 3;//dist of pen from centre of small circle
 var sp;
 var Red = 255;
-var Green = 255;
-var Blue = 255;
+var Green = 0;
+var Blue = 0;
 var weight = 4;
 
 function setup() {

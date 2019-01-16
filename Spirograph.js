@@ -12,7 +12,8 @@ class Spirograph {
 		this.scale = Math.abs(this.R - this.r) + Math.abs(this.rho)+2;
 		this.loopc;
 		this.updateloopc();
-		
+		this.rendsize = 500;
+		this.changed = false;
 	}
 	
 	
@@ -38,18 +39,17 @@ class Spirograph {
 			//converts from the graph coords to the screen coords
 			var x1;
 			var y1;
-			x1 = map(this.x, -this.scale, this.scale,0,width);
-			y1 = map(this.y, -this.scale, this.scale,0,height);
-
+			x1 = map(this.x, -this.scale, this.scale,0,this.rendsize);
+			y1 = map(this.y, -this.scale, this.scale,0,this.rendsize);
 			//draws a line from last coord to next coord
 			if(g != null){
-				g.vertex(x1,y1)
+				g.vertex(x1,y1);
 			}else{
 				vertex(x1,y1);
 			}
 		}
 		if(g != null){
-			g.endShape
+			g.endShape();
 		}else{
 			endShape();
 		}
@@ -70,7 +70,6 @@ class Spirograph {
 		this.scale = Math.abs(this.R - this.r) + Math.abs(this.rho)+2;
 		
 		this.updateloopc();
-		print(this.scale);
 	}
 	
 	setR(R){
@@ -78,7 +77,7 @@ class Spirograph {
 		this.scale = Math.abs(this.R - this.r) + Math.abs(this.rho)+2;
 		
 		this.updateloopc();
-		print(this.scale);
+		this.changed = true;
 	}
 	
 	setRGB(r, g, b){
@@ -100,5 +99,4 @@ function gcd(a, b){
 		return a;
 	}
 	return gcd(b, a % b);
-	
 }
